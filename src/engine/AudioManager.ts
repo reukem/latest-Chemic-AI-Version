@@ -1,6 +1,15 @@
 class AudioManager {
     private ctx: AudioContext | null = null;
     private initialized: boolean = false;
+    private masterVolume: number = 0.5;
+
+    public setMasterVolume(vol: number) {
+        this.masterVolume = Math.max(0, Math.min(1, vol));
+    }
+
+    public getMasterVolume(): number {
+        return this.masterVolume;
+    }
 
     public init() {
         if (!this.initialized) {
@@ -473,6 +482,32 @@ class AudioManager {
             osc.start(time + idx * 0.06);
             osc.stop(time + idx * 0.06 + 0.15);
         });
+    }
+
+    /**
+     * Acoustic 0.05mL titration micro-drop plink.
+     * Sweeps upward smoothly to mimic surface-tension capillary ping.
+     */
+    public playDrop() {
+        this.init();
+        if (!this.ctx) return;
+        const time = this.ctx.currentTime;
+
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1450, time);
+        osc.frequency.exponentialRampToValueAtTime(2200, time + 0.04);
+
+        gain.gain.setValueAtTime(0.08, time);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.09);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(time);
+        osc.stop(time + 0.09);
     }
 }
 

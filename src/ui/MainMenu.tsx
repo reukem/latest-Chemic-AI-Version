@@ -19,6 +19,10 @@ import { LabReportModal } from './LabReportModal';
 import { GoogleProfileModal } from './GoogleProfileModal';
 import { CurriculumLearningModal } from './CurriculumLearningModal';
 import { GlassCrackOverlay } from './components/GlassCrackOverlay';
+import { FlameSpectroscopyModal } from './FlameSpectroscopyModal';
+import { GalvanicCellModal } from './GalvanicCellModal';
+import { ReactionKineticsModal } from './ReactionKineticsModal';
+import { VseprOrbitalModal } from './VseprOrbitalModal';
 
 // Living Ambient Particle Field with Quantum Dust & Radiant Gradient Sparks
 const CanvasParticles: React.FC = () => {
@@ -450,6 +454,10 @@ const MainMenu: React.FC = () => {
   const [isReportOpen, setReportOpen] = useState(false);
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isCurriculumOpen, setIsCurriculumOpen] = useState(false);
+  const [isFlameOpen, setFlameOpen] = useState(false);
+  const [isGalvanicOpen, setGalvanicOpen] = useState(false);
+  const [isKineticsOpen, setKineticsOpen] = useState(false);
+  const [isVseprOpen, setVseprOpen] = useState(false);
   const [googleUser, setGoogleUser] = useState<GoogleUserProfile>(GoogleAuthService.getUser());
 
   const getDialogueText = () => {
@@ -912,6 +920,50 @@ const MainMenu: React.FC = () => {
                   <img src={googleUser.picture} alt="Avatar" className="w-4 h-4 rounded-full border border-cyan-400" />
                   <span className="truncate max-w-[85px]">{googleUser.name.split(' ')[0]}</span>
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => { audioManager.playClick(); setFlameOpen(true); }}
+                  onMouseEnter={() => audioManager.playHover()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-950/80 hover:bg-amber-900 border border-amber-400/50 hover:border-amber-300 text-amber-200 text-[11px] font-mono font-bold tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)] active:scale-95 cursor-pointer"
+                  title={isVi ? 'Đốt Màu Ngọn Lửa & Quang Phổ Cation' : 'Bunsen Flame & Emission Spectroscopy'}
+                >
+                  <span>🔥</span>
+                  <span>{isVi ? 'QUANG PHỔ' : 'FLAME'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => { audioManager.playClick(); setGalvanicOpen(true); }}
+                  onMouseEnter={() => audioManager.playHover()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-400/50 hover:border-cyan-300 text-cyan-200 text-[11px] font-mono font-bold tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)] active:scale-95 cursor-pointer"
+                  title={isVi ? 'Pin Điện Hóa Daniell & Bình Điện Phân' : 'Galvanic Daniell Cell & Electrolysis'}
+                >
+                  <span>⚡</span>
+                  <span>{isVi ? 'PIN ĐIỆN' : 'GALVANIC'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => { audioManager.playClick(); setKineticsOpen(true); }}
+                  onMouseEnter={() => audioManager.playHover()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-400/50 hover:border-emerald-300 text-emerald-200 text-[11px] font-mono font-bold tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)] active:scale-95 cursor-pointer"
+                  title={isVi ? 'Đồ Thị Động Học ODE & Cân Bằng Le Chatelier' : 'Live ODE Kinetics & Le Chatelier'}
+                >
+                  <span>📈</span>
+                  <span>{isVi ? 'ĐỘNG HỌC' : 'KINETICS'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => { audioManager.playClick(); setVseprOpen(true); }}
+                  onMouseEnter={() => audioManager.playHover()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-400/50 hover:border-purple-300 text-purple-200 text-[11px] font-mono font-bold tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(168,85,247,0.2)] active:scale-95 cursor-pointer"
+                  title={isVi ? 'Mô Hình 3D VSEPR & Lai Hóa Orbital' : '3D VSEPR & Hybrid Orbitals'}
+                >
+                  <span>🔮</span>
+                  <span>{isVi ? 'VSEPR 3D' : 'VSEPR 3D'}</span>
+                </button>
               </div>
             </div>
           </div>
@@ -1137,6 +1189,10 @@ const MainMenu: React.FC = () => {
       <LabReportModal isOpen={isReportOpen} onClose={() => setReportOpen(false)} />
       <GoogleProfileModal isOpen={isProfileOpen} onClose={() => setProfileOpen(false)} onUserUpdated={setGoogleUser} />
       <CurriculumLearningModal isOpen={isCurriculumOpen} onClose={() => setIsCurriculumOpen(false)} />
+      <FlameSpectroscopyModal isOpen={isFlameOpen} onClose={() => setFlameOpen(false)} isVi={isVi} />
+      <GalvanicCellModal isOpen={isGalvanicOpen} onClose={() => setGalvanicOpen(false)} isVi={isVi} />
+      <ReactionKineticsModal isOpen={isKineticsOpen} onClose={() => setKineticsOpen(false)} isVi={isVi} />
+      <VseprOrbitalModal isOpen={isVseprOpen} onClose={() => setVseprOpen(false)} isVi={isVi} />
       <AnimatePresence>
         {isReagentDbOpen && (
           <ErrorBoundary>

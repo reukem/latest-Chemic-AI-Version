@@ -175,12 +175,12 @@ export const LatexRenderer: React.FC<LatexRendererProps> = ({ content, language 
                 }
             }
 
-            // Normal text with basic formatting (newlines and bold)
+            // Normal text with basic formatting (newlines, **bold**, and *emphasis/labels*)
             const lines = part.split('\n');
             return (
                 <span key={idx} className="select-text">
                     {lines.map((line, lIdx) => {
-                        // Parse **bold**
+                        // First parse **bold**
                         const boldParts = line.split(/(\*\*.*?\*\*)/g);
                         return (
                             <React.Fragment key={lIdx}>
@@ -189,7 +189,14 @@ export const LatexRenderer: React.FC<LatexRendererProps> = ({ content, language 
                                     if (bp.startsWith('**') && bp.endsWith('**')) {
                                         return <strong key={bIdx} className="text-cyan-300 font-bold">{bp.slice(2, -2)}</strong>;
                                     }
-                                    return <span key={bIdx}>{bp}</span>;
+                                    // Parse *single asterisks* inside non-bold segments
+                                    const italicParts = bp.split(/(\*[^*\n]+?\*)/g);
+                                    return italicParts.map((ip, iIdx) => {
+                                        if (ip.startsWith('*') && ip.endsWith('*') && ip.length > 2) {
+                                            return <strong key={`${bIdx}-${iIdx}`} className="text-cyan-300 font-semibold">{ip.slice(1, -1)}</strong>;
+                                        }
+                                        return <span key={`${bIdx}-${iIdx}`}>{ip}</span>;
+                                    });
                                 })}
                             </React.Fragment>
                         );

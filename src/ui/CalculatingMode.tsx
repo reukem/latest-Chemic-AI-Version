@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSimulationStore } from '../engine/store';
+import { useSimulationStore, getTableBenchY } from '../engine/store';
 import { audioManager } from '../engine/AudioManager';
 import { LatexRenderer } from './LatexRenderer';
 import {
@@ -167,7 +167,7 @@ export const CalculatingMode: React.FC = () => {
 
         setTimeout(() => {
             flushAll();
-            spawnContainer('beaker', window.innerWidth * 0.45, Math.max(250, window.innerHeight - 240));
+            spawnContainer('beaker', window.innerWidth * 0.45, getTableBenchY());
             setTimeout(() => {
                 const containers = useSimulationStore.getState().containers;
                 if (containers.length > 0) {

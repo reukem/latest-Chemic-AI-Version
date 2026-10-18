@@ -1,4 +1,4 @@
-# Chemic-AI: The Quantum Reality Chemistry Engine
+# Chemic-AI Ultimate: The Quantum Reality Chemistry Engine
 ### *A High-Performance "Safe-Failure" Virtual Laboratory & AI Mentor for Secondary Chemistry Education*
 
 [![Build with Google AI](https://img.shields.io/badge/Google%20AI-Gemini%202.5%20Flash-4285F4?style=for-the-badge&logo=google)](https://ai.google.dev/)
@@ -8,7 +8,8 @@
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 > **#AIRiserVietnam** • **#BuildwithGoogleAI**  
-> *Authored by [Ngô Minh Thiên Bảo (reukem)](https://github.com/reukem)*
+> *Authored by [Ngô Minh Thiên Bảo (reukem)](https://github.com/reukem)*  
+> **Repository:** [https://github.com/reukem/latest-Chemic-AI-Version](https://github.com/reukem/latest-Chemic-AI-Version)
 
 ---
 
@@ -162,10 +163,10 @@ Chemic-AI synthesizes realistic audio waveforms in real time using the **Web Aud
 ### Quick Start
 ```bash
 # 1. Clone the repository
-git clone https://github.com/reukem/Chemic-AI-AI-Riser-2026-competition.git
+git clone https://github.com/reukem/latest-Chemic-AI-Version.git
 
 # 2. Navigate to the project directory
-cd Chemic-AI-AI-Riser-2026-competition
+cd latest-Chemic-AI-Version
 
 # 3. Install dependencies
 npm install
@@ -177,6 +178,9 @@ npm run dev
 npm run build
 ```
 
+### ⚡ Standalone 1-Click Offline Laboratory
+Don't want to install Node.js? Download **`Chemic-AI Ultimate.html`** directly from the repository root or Releases page. Double-click to run the entire virtual laboratory, AI mentor, and analytical instruments offline in any modern web browser!
+
 ### Automated Testing Suite
 Chemic-AI uses Playwright for comprehensive End-to-End simulation testing:
 ```bash
@@ -185,11 +189,15 @@ npx playwright test
 
 ---
 
-## 🔮 11. Future Roadmap
+## 🔮 11. Implemented Features & Future Roadmap
 
+- [x] **20-Node Coupled 1D Shallow-Water Liquid Physics:** Real-time Hooke's Law surface wave propagation, capillary climb, and hydrodynamic particle swirling.
+- [x] **Spectroscopy & Flame Test Simulator:** Real-time atomic emission spectral lines for qualitative cation analysis ($Na^+$ golden yellow, $K^+$ lilac, $Cu^{2+}$ green, $Ca^{2+}$ brick red, $Ba^{2+}$ apple green).
+- [x] **3D Electron Orbital & VSEPR Visualizer:** Interactive nodal planes, molecular geometry, and orbital hybridization ($sp, sp^2, sp^3, d^2sp^3$).
+- [x] **Galvanic Cell & Electrochemistry Simulator:** Daniell cell ($Zn/Cu$), SHE reference, real-time voltmeter readouts, and salt-bridge ion transport.
+- [x] **Reaction Kinetics & Activation Energy Simulator:** Arrhenius temperature-rate curves, Maxwell-Boltzmann kinetic energy distributions, and reaction orders.
+- [x] **Offline Lucy Pedagogical Neural Brain:** Zero-latency offline AI mentor with dual-language audio synthesis, volume sliders, and Socratic guidance.
 - [ ] **Live2D Real-Time Voice Model:** Upgrading Professor Lucy with full lip-synced Live2D animations and bidirectional WebRTC voice streaming.
-- [ ] **Spectroscopy & Flame Test Simulator:** Real-time atomic emission spectral lines for qualitative cation analysis ($Na^+$ golden yellow, $K^+$ lilac, $Cu^{2+}$ green).
-- [ ] **3D Electron Orbital Wavefunction Visualizer:** Interactive nodal plane and orbital hybridization ($sp, sp^2, sp^3, d^2sp^3$) exploration.
 
 ---
 
@@ -205,6 +213,6 @@ npx playwright test
 
 <div align="center">
 
-**[Chemic-AI Repository](https://github.com/reukem/Chemic-AI-AI-Riser-2026-competition)** • Built with 💙 for the Future of Science Education.
+**[Chemic-AI Repository](https://github.com/reukem/latest-Chemic-AI-Version)** • Built with 💙 for the Future of Science Education.
 
 </div>

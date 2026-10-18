@@ -25,7 +25,7 @@ export default function ContactWidget() {
                   DEV_COMMS <span className="text-slate-500">// v2.0</span>
                 </h3>
                 <span className="text-[10px] text-slate-400 font-mono">
-                  {isVi ? 'Kênh kết nối tới nhà phát triển' : 'Developer Transmission Matrix'}
+                  {isVi ? 'Kênh hỗ trợ dự án Chemic-AI' : 'Chemic-AI Support Matrix'}
                 </span>
               </div>
             </div>
@@ -42,7 +42,7 @@ export default function ContactWidget() {
           <div className="flex flex-col space-y-2.5 relative z-10">
             {/* Email Link */}
             <a 
-              href="mailto:notreukem@gmail.com" 
+              href="mailto:support@chemic-ai.org" 
               onClick={() => audioManager.playClick()}
               onMouseEnter={() => audioManager.playHover()}
               className="flex items-center justify-between p-3 rounded-2xl bg-[#071628]/80 hover:bg-[#0a2340] border border-cyan-950 hover:border-cyan-400/80 transition-all group shadow-sm cursor-pointer"
@@ -55,10 +55,10 @@ export default function ContactWidget() {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="text-[9px] text-slate-400 font-mono uppercase tracking-widest">
-                    {isVi ? 'HÒM THƯ TRỰC TIẾP' : 'DIRECT MAIL'}
+                    {isVi ? 'HÒM THƯ DỰ ÁN' : 'PROJECT MAIL'}
                   </span>
                   <span className="text-xs font-bold text-slate-200 font-mono group-hover:text-cyan-300 transition-colors truncate">
-                    notreukem@gmail.com
+                    support@chemic-ai.org
                   </span>
                 </div>
               </div>
@@ -67,7 +67,7 @@ export default function ContactWidget() {
 
             {/* YouTube Link */}
             <a 
-              href="https://www.youtube.com/@reukem" 
+              href="https://www.youtube.com/@ChemicAI_Official" 
               target="_blank" 
               rel="noopener noreferrer" 
               onClick={() => audioManager.playClick()}
@@ -82,10 +82,10 @@ export default function ContactWidget() {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="text-[9px] text-slate-400 font-mono uppercase tracking-widest">
-                    {isVi ? 'KÊNH TRUYỀN THÔNG' : 'BROADCAST NETWORK'}
+                    {isVi ? 'KÊNH HỌC TẬP' : 'ACADEMY CHANNEL'}
                   </span>
                   <span className="text-xs font-bold text-slate-200 font-mono group-hover:text-rose-300 transition-colors truncate">
-                    @reukem
+                    @ChemicAI_Official
                   </span>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function ContactWidget() {
         ) : (
           <>
             <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee] animate-pulse" />
-            <span className="tracking-widest uppercase">{isVi ? 'LIÊN HỆ TÁC GIẢ' : 'CONTACT CREATOR'}</span>
+            <span className="tracking-widest uppercase">{isVi ? 'LIÊN HỆ DỰ ÁN' : 'PROJECT CONTACT'}</span>
           </>
         )}
       </button>

@@ -16,7 +16,7 @@ export const LabReportModal: React.FC<LabReportModalProps> = ({ isOpen, onClose 
     const containers = useSimulationStore(state => state.containers);
     const env = useSimulationStore(state => state.env);
 
-    if (!isOpen) return null;
+    const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
 
     const user = GoogleAuthService.getUser();
 
@@ -55,11 +55,11 @@ export const LabReportModal: React.FC<LabReportModalProps> = ({ isOpen, onClose 
         };
     }, [containers, env, isVi]);
 
-    const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
-
     const reportHtml = useMemo(() => {
         return LabReportExporter.generateHtmlReport(reportData, language);
     }, [reportData, language]);
+
+    if (!isOpen) return null;
 
     const handleOpenGoogleDocs = async () => {
         audioManager.playClick();

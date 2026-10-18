@@ -20,14 +20,22 @@ export async function askLucyAssistant(userMessage: string, currentState: any, r
     const env = store.env || { temp: 25, pressure: 1.0 };
     const customKey = store.customApiKey;
 
+    // Clean user query of any appended system instruction for offline fallback matching
+    const cleanUserQuery = userMessage.split('\n\nSystem Instruction:')[0].trim();
+
     try {
         const client = customKey ? new GoogleGenAI({ apiKey: customKey }) : ai;
         const contextPayload = organicContext 
             ? `ORGANIC MOLECULAR WORKBENCH CONTEXT:\n${JSON.stringify(organicContext, null, 2)}\n\nUSER QUERY: ${userMessage}`
             : `CURRENT LAB STATE (JSON):\n${JSON.stringify(currentState, null, 2)}\n\nUSER QUERY: ${userMessage}`;
 
-        const response = await client.models.generateContent({
-            model: 'gemini-2.5-flash',
+        // 3500ms timeout promise so browser requests NEVER hang the UI indefinitely
+        const timeoutPromise = new Promise<never>((_, reject) => 
+            setTimeout(() => reject(new Error('Gemini API call timed out (3.5s limit)')), 3500)
+        );
+
+        const apiPromise = client.models.generateContent({
+            model: 'gemini-2.0-flash',
             contents: [
                 { role: 'user', parts: [{ text: contextPayload }] }
             ],
@@ -37,12 +45,13 @@ export async function askLucyAssistant(userMessage: string, currentState: any, r
             }
         });
 
-        return response.text || generateOfflineLucyResponse(userMessage, currentState, language, env, organicContext);
+        const response = await Promise.race([apiPromise, timeoutPromise]);
+        return response.text || generateOfflineLucyResponse(cleanUserQuery, currentState, language, env, organicContext);
     } catch (error: any) {
-        console.warn("Gemini API unavailable or offline. Seamlessly routing to Lucy Offline Knowledge Core.", error);
+        console.warn("Gemini API call unavailable, rate-limited, or timed out. Seamlessly routing to Lucy Offline Knowledge Core.", error);
         
-        // Graceful fallback to rich compiled offline chemistry databank
-        return generateOfflineLucyResponse(userMessage, currentState, language, env, organicContext);
+        // Instantaneous graceful fallback to rich compiled offline chemistry databank
+        return generateOfflineLucyResponse(cleanUserQuery, currentState, language, env, organicContext);
     }
 }
 

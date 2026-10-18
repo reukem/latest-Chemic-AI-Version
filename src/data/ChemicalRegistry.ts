@@ -68,6 +68,8 @@ export interface ReactionRule {
     product: string;
     products?: string[];
     productColor?: string;
+    minTemperature?: number;
+    maxTemperature?: number;
     equation?: { EN: string; VN: string };
     reactionType?: { EN: string; VN: string };
     mechanism?: { EN: string; VN: string };
@@ -1160,6 +1162,20 @@ export const CHEMICAL_REGISTRY: Record<string, Chemical> = {
         isOrganic: false,
         stateOfMatter: 'aqueous',
         molarMass: 58.44
+    },
+    'KNO3': {
+        id: 'KNO3',
+        name: { EN: 'Potassium Nitrate', VN: 'Kali Nitrat' },
+        formula: 'KNO₃ (aq)',
+        color: '#f8fafc',
+        type: 'liquid',
+        category: 'salt',
+        reactionClass: 'salt',
+        ph: 7.0,
+        description: { EN: 'Soluble potassium nitrate salt byproduct from the Golden Rain reaction.', VN: 'Muối kali nitrat tan trong dung dịch từ phản ứng Mưa Vàng.' },
+        isOrganic: false,
+        stateOfMatter: 'aqueous',
+        molarMass: 101.10
     },
 
     // ==========================================
@@ -2441,6 +2457,125 @@ export const CHEMICAL_REGISTRY: Record<string, Chemical> = {
         stateOfMatter: 'aqueous',
         molarMass: 339.79
     },
+    'SODIUM_CHROMITE': {
+        id: 'SODIUM_CHROMITE',
+        name: { EN: "Sodium Tetrahydroxochromate(III) (Emerald Green)", VN: "Natri Cromit (Dung Dịch Xanh Lục Bảo)" },
+        formula: "Na[Cr(OH)₄] (aq)",
+        color: "#10b981",
+        type: "liquid",
+        category: "salt",
+        reactionClass: "transition_metal_salt",
+        ph: 12.5,
+        description: {
+            EN: "Deep emerald-green alkaline complex formed when amphoteric Cr(OH)₃ dissolves in excess NaOH.",
+            VN: "Dung dịch phức chất màu xanh lục bảo trong suốt tạo thành khi kết tủa Cr(OH)₃ tan trong kiềm NaOH dư."
+        },
+        isOrganic: false,
+        stateOfMatter: "aqueous",
+        molarMass: 143.01
+    },
+    'SrOH2': {
+        id: 'SrOH2',
+        name: { EN: "Strontium Hydroxide Solution", VN: "Dung Dịch Stronti Hiđroxit" },
+        formula: "Sr(OH)₂ (aq)",
+        color: "#f0fdf4",
+        type: "liquid",
+        category: "base",
+        reactionClass: "strong_base",
+        ph: 13.0,
+        description: {
+            EN: "Strong alkaline earth base formed by reacting strontium metal with water.",
+            VN: "Dung dịch bazơ kiềm mạnh tạo thành khi kim loại stronti tác dụng với nước."
+        },
+        isOrganic: false,
+        stateOfMatter: "aqueous",
+        molarMass: 121.63
+    },
+    'SODIUM_BERYLLATE': {
+        id: 'SODIUM_BERYLLATE',
+        name: { EN: "Sodium Tetrahydroxoberyllate", VN: "Dung Dịch Natri Berylat" },
+        formula: "Na₂[Be(OH)₄] (aq)",
+        color: "#f8fafc",
+        type: "liquid",
+        category: "salt",
+        reactionClass: "strong_base",
+        ph: 12.5,
+        description: {
+            EN: "Clear amphoteric alkaline beryllate complex formed by dissolving beryllium in NaOH.",
+            VN: "Dung dịch phức berylat lưỡng tính trong suốt tạo thành khi hòa tan beri trong NaOH."
+        },
+        isOrganic: false,
+        stateOfMatter: "aqueous",
+        molarMass: 123.02
+    },
+    'ZnSO4': {
+        id: 'ZnSO4',
+        name: { EN: "Zinc Sulfate Solution (White Vitriol)", VN: "Dung Dịch Kẽm Sunfat" },
+        formula: "ZnSO₄ (aq)",
+        color: "#f8fafc",
+        type: "liquid",
+        category: "salt",
+        reactionClass: "salt",
+        ph: 5.5,
+        description: {
+            EN: "Colorless aqueous zinc sulfate solution formed when zinc displaces copper from CuSO₄.",
+            VN: "Dung dịch kẽm sunfat trong suốt không màu tạo thành khi kẽm đẩy đồng ra khỏi dung dịch CuSO₄."
+        },
+        isOrganic: false,
+        stateOfMatter: "aqueous",
+        molarMass: 161.47
+    },
+    'IRON_ACETATE': {
+        id: 'IRON_ACETATE',
+        name: { EN: "Iron Acetate Solution", VN: "Dung Dịch Sắt Axetat" },
+        formula: "(CH₃COO)₂Fe (aq)",
+        color: "#d97706",
+        type: "liquid",
+        category: "organic",
+        reactionClass: "transition_metal_salt",
+        ph: 4.8,
+        description: {
+            EN: "Amber-brown aqueous solution of iron acetate formed by reacting iron or iron hydroxides with acetic acid.",
+            VN: "Dung dịch muối sắt axetat tạo thành khi hòa tan sắt hoặc hidroxit sắt trong axit axetic."
+        },
+        isOrganic: true,
+        stateOfMatter: "aqueous",
+        molarMass: 173.93
+    },
+    'MgO_SOLID': {
+        id: 'MgO_SOLID',
+        name: { EN: "Magnesium Oxide (White Ash)", VN: "Magie Oxit (Tro Trắng MgO)" },
+        formula: "MgO (s)",
+        color: "#f8fafc",
+        type: "solid",
+        category: "base",
+        reactionClass: "precipitate",
+        ph: 10.3,
+        description: {
+            EN: "Refractory white powdery oxide formed from the blinding combustion of magnesium ribbon in oxygen.",
+            VN: "Chất rắn dạng bột màu trắng tạo thành sau phản ứng cháy chói lòa của magie trong khí oxy."
+        },
+        isOrganic: false,
+        stateOfMatter: "solid",
+        molarMass: 40.304
+    },
+    'KCl': {
+        id: 'KCl',
+        name: { EN: "Potassium Chloride (Sylvite)", VN: "Kali Clorua (Khoáng Sylvit)" },
+        formula: "KCl (s)",
+        color: "#f8fafc",
+        type: "solid",
+        category: "salt",
+        reactionClass: "salt",
+        ph: 7.0,
+        description: {
+            EN: "Colorless ionic salt residue formed from potassium chlorate decomposition and pyrotechnic deflagration.",
+            VN: "Muối khoáng kali clorua tinh thể trắng sinh ra sau khi nhiệt phân hoặc đốt cháy kali clorat."
+        },
+        isOrganic: false,
+        stateOfMatter: "solid",
+        molarMass: 74.55
+    }
 };
 
 /**
@@ -2725,8 +2860,8 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ['ZINC', 'CuSO4'],
-        product: 'ZnCl2',
-        products: ['ZnCl2', 'COPPER'],
+        product: 'ZnSO4',
+        products: ['ZnSO4', 'COPPER'],
         equation: {
             EN: 'Zn (s) + CuSO₄ (aq) → ZnSO₄ (aq) + Cu (s) ↓ (Decolorization & Copper Precipitation)',
             VN: 'Zn (r) + CuSO₄ (dd) → ZnSO₄ (dd) + Cu (r) ↓ (Mất Màu Xanh & Kết Tủa Đồng Đỏ)'
@@ -2960,6 +3095,54 @@ export const REACTION_RULES: ReactionRule[] = [
         },
         effect: 'precipitate',
         precipitateColor: '#f8fafc',
+        temperatureSpike: 10
+    },
+    {
+        reactants: ["CaCO3_PRECIPITATE", "HCl"],
+        product: "SALT_WATER",
+        products: ["SALT_WATER", "CARBON_DIOXIDE"],
+        equation: {
+            EN: "CaCO₃ (s) + 2HCl (aq) → CaCl₂ (aq) + H₂O (l) + CO₂ (g) ↑",
+            VN: "CaCO₃ (r) + 2HCl (dd) → CaCl₂ (dd) + H₂O (l) + CO₂ (k) ↑"
+        },
+        reactionType: {
+            EN: "Carbonate Precipitate Acid Dissolution & Effervescence",
+            VN: "Hòa Tan Kết Tủa Đá Vôi CaCO₃ Trong Axit Sủi Bọt Khí CO₂"
+        },
+        mechanism: {
+            EN: "Hydronium ions protonate carbonate anions in the insoluble CaCO₃ lattice, dissolving the milky white precipitate into clear CaCl₂ while releasing brisk CO₂ gas bubbles.",
+            VN: "Ion H⁺ tấn công ion CO₃²⁻ trong mạng tinh thể CaCO₃, hòa tan hoàn toàn kết tủa trắng đục thành dung dịch CaCl₂ trong suốt kèm theo sủi bọt khí CO₂ mãnh liệt."
+        },
+        message: {
+            EN: "Precipitate Dissolved! Milky white Calcium Carbonate dissolves in HCl with vigorous CO₂ effervescence!",
+            VN: "Tan kết tủa! Kết tủa trắng CaCO₃ tan hoàn toàn trong axit HCl và sủi bọt khí CO₂!"
+        },
+        effect: "bubbles",
+        productColor: "#e0f2fe",
+        temperatureSpike: 10
+    },
+    {
+        reactants: ["BaCO3_PRECIPITATE", "HCl"],
+        product: "BaCl2",
+        products: ["BaCl2", "CARBON_DIOXIDE"],
+        equation: {
+            EN: "BaCO₃ (s) + 2HCl (aq) → BaCl₂ (aq) + H₂O (l) + CO₂ (g) ↑",
+            VN: "BaCO₃ (r) + 2HCl (dd) → BaCl₂ (dd) + H₂O (l) + CO₂ (k) ↑"
+        },
+        reactionType: {
+            EN: "Analytical Distinction: BaCO₃ Dissolves in Acid (Unlike BaSO₄)",
+            VN: "Phân Biệt Kết Tủa Bari: BaCO₃ Tan Trong Axit Sủi Bọt Khí (Khác Với BaSO₄)"
+        },
+        mechanism: {
+            EN: "Unlike Barium Sulfate (BaSO₄) which is completely impervious to mineral acids, Barium Carbonate (BaCO₃) readily dissolves in HCl with vigorous CO₂ gas evolution.",
+            VN: "Khác với kết tủa BaSO₄ không tan trong bất kỳ axit nào, kết tủa trắng BaCO₃ tan dễ dàng trong dung dịch HCl kèm hiện tượng sủi bọt khí CO₂."
+        },
+        message: {
+            EN: "Analytical Test: White BaCO₃ precipitate dissolves completely in HCl with CO₂ bubbling!",
+            VN: "Phân biệt chuẩn xác: Kết tủa trắng BaCO₃ tan hoàn toàn trong HCl và sủi bọt khí CO₂!"
+        },
+        effect: "bubbles",
+        productColor: "#e0f2fe",
         temperatureSpike: 10
     },
 
@@ -3222,6 +3405,7 @@ export const REACTION_RULES: ReactionRule[] = [
         reactants: ['GLUCOSE', 'CuOH2_PRECIPITATE'],
         product: 'COPPER_POLYOL_COMPLEX',
         products: ['COPPER_POLYOL_COMPLEX'],
+        maxTemperature: 59,
         equation: {
             EN: '2C₆H₁₂O₆ + Cu(OH)₂ → [Cu(C₆H₁₁O₆)₂] + 2H₂O (Glucose Polyol Complexation)',
             VN: '2C₆H₁₂O₆ + Cu(OH)₂ → [Cu(C₆H₁₁O₆)₂] + 2H₂O (Glucozơ Tạo Phức Đồng Xanh Lam)'
@@ -3965,6 +4149,78 @@ export const REACTION_RULES: ReactionRule[] = [
         productColor: '#f43f5e',
         temperatureSpike: 2
     },
+    {
+        reactants: ["PINK_BASE", "HCl"],
+        product: "SALT_WATER",
+        products: ["SALT_WATER", "PHENOLPHTHALEIN"],
+        equation: {
+            EN: "Ind²⁻ (Fuchsia Pink) + 2H₃O⁺ → H₂Ind (Colorless Lactone) + 2H₂O",
+            VN: "Ind²⁻ (Hồng Cánh Sen) + 2H₃O⁺ → H₂Ind (Không Màu) + 2H₂O"
+        },
+        reactionType: {
+            EN: "Acid-Base Titration Endpoint Decolorization",
+            VN: "Trung Hòa Kiềm Làm Mất Màu Hồng Phenolphtalein"
+        },
+        mechanism: {
+            EN: "Adding acid lowers the solution pH below 8.2, protonating the quinoid dianion back into its closed, colorless spirolactone ring structure.",
+            VN: "Thêm axit làm giảm pH xuống dưới 8.2, đóng vòng lacton của phenolphtalein khiến màu hồng cánh sen biến mất hoàn toàn thành dung dịch trong suốt."
+        },
+        message: {
+            EN: "Titration Endpoint Reached! Hydrochloric acid neutralizes the base, discharging the fuchsia pink indicator back to crystal clear!",
+            VN: "Đạt điểm tương đương chuẩn độ! Axit trung hòa kiềm làm mất màu hồng cánh sen của phenolphtalein về lại trong suốt!"
+        },
+        effect: "color_shift",
+        productColor: "#e0f2fe",
+        temperatureSpike: 12
+    },
+    {
+        reactants: ["PINK_BASE", "H2SO4"],
+        product: "Na2SO4",
+        products: ["Na2SO4", "PHENOLPHTHALEIN"],
+        equation: {
+            EN: "Ind²⁻ (Fuchsia Pink) + H₂SO₄ → H₂Ind (Colorless) + SO₄²⁻",
+            VN: "Ind²⁻ (Hồng Cánh Sen) + H₂SO₄ → H₂Ind (Không Màu) + SO₄²⁻"
+        },
+        reactionType: {
+            EN: "Acid-Base Indicator Neutralization",
+            VN: "Axit Sunfuric Làm Mất Màu Hồng Phenolphtalein"
+        },
+        mechanism: {
+            EN: "Sulfuric acid neutralizes hydroxide ions and protonates phenolphthalein back to its colorless lactone form.",
+            VN: "Axit sunfuric trung hòa kiềm, chuyển phenolphtalein về dạng vòng lacton không màu."
+        },
+        message: {
+            EN: "Neutralization complete: Fuchsia pink solution turns completely colorless upon acidification!",
+            VN: "Trung hòa hoàn tất: Dung dịch màu hồng cánh sen chuyển sang không màu trong suốt!"
+        },
+        effect: "color_shift",
+        productColor: "#e0f2fe",
+        temperatureSpike: 15
+    },
+    {
+        reactants: ["PINK_BASE", "ACETIC_ACID"],
+        product: "SODIUM_ACETATE",
+        products: ["SODIUM_ACETATE", "PHENOLPHTHALEIN"],
+        equation: {
+            EN: "Ind²⁻ (Pink) + 2CH₃COOH → H₂Ind (Colorless) + 2CH₃COO⁻",
+            VN: "Ind²⁻ (Hồng) + 2CH₃COOH → H₂Ind (Không Màu) + 2CH₃COO⁻"
+        },
+        reactionType: {
+            EN: "Weak Acid Neutralization of Alkaline Indicator",
+            VN: "Axit Axetic Làm Mất Màu Hồng Phenolphtalein"
+        },
+        mechanism: {
+            EN: "Acetic acid neutralizes excess hydroxide ions, dropping the pH below the 8.2 transition threshold of phenolphthalein.",
+            VN: "Axit axetic trung hòa kiềm dư, hạ pH xuống dưới ngưỡng 8.2 làm mất màu hồng của chỉ thị."
+        },
+        message: {
+            EN: "Acetic acid neutralizes the alkaline solution, discharging the fuchsia pink color!",
+            VN: "Giấm ăn trung hòa dung dịch kiềm, làm biến mất màu hồng cánh sen!"
+        },
+        effect: "color_shift",
+        productColor: "#e0f2fe",
+        temperatureSpike: 8
+    },
 
     // ==========================================
     // S. SAPONIFICATION & ESTER HYDROLYSIS
@@ -4118,8 +4374,9 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ['MAGNESIUM', 'O2'],
-        product: 'SALT_WATER',
-        products: ['SALT_WATER'],
+        product: 'MgO_SOLID',
+        products: ['MgO_SOLID'],
+        minTemperature: 100,
         equation: {
             EN: '2Mg (s) + O₂ (g) → 2MgO (s) (Blinding White Flash Flare)',
             VN: '2Mg (r) + O₂ (k) → 2MgO (r) (Ngọn Lửa Trắng Chói Lòa Cực Sáng)'
@@ -4175,6 +4432,7 @@ export const REACTION_RULES: ReactionRule[] = [
         reactants: ['GLUCOSE', 'CuOH2_PRECIPITATE'],
         product: 'Cu2O_PRECIPITATE',
         products: ['Cu2O_PRECIPITATE', 'DISTILLED_WATER'],
+        minTemperature: 60,
         equation: {
             EN: 'C₆H₁₂O₆ + 2Cu(OH)₂ + NaOH -(t°)-> C₆H₁₁O₇Na + Cu₂O ↓ (Brick Red) + 3H₂O',
             VN: 'C₆H₁₂O₆ + 2Cu(OH)₂ + NaOH -(t°)-> Natri Gluconat + Cu₂O ↓ (Đỏ Gạch) + 3H₂O'
@@ -4302,6 +4560,7 @@ export const REACTION_RULES: ReactionRule[] = [
         reactants: ['ETHYL_ACETATE', 'NaOH'],
         product: 'SODIUM_ACETATE',
         products: ['SODIUM_ACETATE', 'ETHANOL'],
+        minTemperature: 60,
         equation: {
             EN: 'CH₃COOC₂H₅ + NaOH -(t°)-> CH₃COONa + C₂H₅OH (Ester Saponification / Alkaline Cleavage)',
             VN: 'CH₃COOC₂H₅ + NaOH -(t°)-> CH₃COONa + C₂H₅OH (Thủy Phân Este Trong Môi Trường Kiềm)'
@@ -4345,32 +4604,6 @@ export const REACTION_RULES: ReactionRule[] = [
         effect: 'bubbles',
         productColor: '#f8fafc',
         temperatureSpike: 15
-    },
-    {
-        reactants: ['FORMIC_ACID', 'TOLLENS_REAGENT'],
-        product: 'Ag_MIRROR',
-        products: ['Ag_MIRROR', 'CARBON_DIOXIDE'],
-        equation: {
-            EN: 'HCOOH + 2[Ag(NH₃)₂]OH → (NH₄)₂CO₃ + 2Ag ↓ (Silver Mirror) + 2NH₃ + H₂O',
-            VN: 'HCOOH + 2[Ag(NH₃)₂]OH → (NH₄)₂CO₃ + 2Ag ↓ (Gương Bạc Sáng) + 2NH₃ + H₂O'
-        },
-        reactionType: {
-            EN: 'Formic Acid Silver Mirror Test',
-            VN: 'Phản Ứng Tráng Bạc Của Axit Fomic'
-        },
-        mechanism: {
-            EN: 'Formic acid uniquely possesses both carboxylic acid and aldehyde structural moieties. The formyl hydrogen is readily oxidized by Tollens reagent, precipitating a radiant metallic silver mirror.',
-            VN: 'Axit fomic có cấu tạo đặc biệt chứa nhóm andehit (-CHO), nên tham gia được phản ứng tráng bạc với thuốc thử Tollens tạo lớp gương bạc sáng loáng.'
-        },
-        message: {
-            EN: 'Silver Mirror Test: Formic Acid reduces Tollens Reagent to deposit an incandescent metallic Silver Mirror!',
-            VN: 'Tráng bạc thành công: Axit fomic khử thuốc thử Tollens tạo lớp gương bạc sáng loáng!'
-        },
-        effect: 'color_shift',
-        productColor: '#94a3b8',
-        temperatureSpike: 35,
-        requiresPopup: true,
-        hazardLevel: 'SAFE'
     },
     {
         reactants: ['BaCl2', 'Na2SO4'],
@@ -4674,29 +4907,6 @@ export const REACTION_RULES: ReactionRule[] = [
         temperatureSpike: 35,
     },
     {
-        reactants: ['ACETIC_ACID', 'SODIUM'],
-        product: 'SODIUM_ACETATE',
-        products: ["SODIUM_ACETATE","HYDROGEN_GAS"],
-        equation: {
-            EN: '2CH₃COOH (aq) + 2Na (s) → 2CH₃COONa (aq) + H₂ (g) ↑',
-            VN: '2CH₃COOH (dd) + 2Na (r) → 2CH₃COONa (dd) + H₂ (k) ↑'
-        },
-        reactionType: {
-            EN: 'Acid-Metal Redox Effervescence',
-            VN: 'Axit Tác Dụng Với Kim Loại Kiềm'
-        },
-        mechanism: {
-            EN: 'Carboxylic acid proton is reduced by sodium metal, generating soluble sodium acetate and brisk hydrogen gas effervescence.',
-            VN: 'Ion H⁺ trong nhóm cacboxyl bị natri khử giải phóng bọt khí hydro mạnh mẽ và tạo muối natri axetat.'
-        },
-        message: {
-            EN: 'Acid-metal reaction: Sodium dissolves vigorously in Acetic Acid with Hydrogen bubbling.',
-            VN: 'Natri tan mạnh trong axit axetic sủi bọt khí Hydro (H₂).'
-        },
-        effect: 'bubbles',
-        temperatureSpike: 45,
-    },
-    {
         reactants: ['ACETIC_ACID', 'POTASSIUM'],
         product: 'POTASSIUM_ACETATE',
         products: ["POTASSIUM_ACETATE","HYDROGEN_GAS"],
@@ -4767,8 +4977,8 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ['ACETIC_ACID', 'IRON'],
-        product: 'SODIUM_ACETATE',
-        products: ["SODIUM_ACETATE","HYDROGEN_GAS"],
+        product: 'IRON_ACETATE',
+        products: ['IRON_ACETATE', 'HYDROGEN_GAS'],
         equation: {
             EN: '2CH₃COOH (aq) + Fe (s) → (CH₃COO)₂Fe (aq) + H₂ (g) ↑',
             VN: '2CH₃COOH (dd) + Fe (r) → (CH₃COO)₂Fe (dd) + H₂ (k) ↑'
@@ -4786,6 +4996,7 @@ export const REACTION_RULES: ReactionRule[] = [
             VN: 'Sắt phản ứng với axit axetic sủi bọt khí H₂.'
         },
         effect: 'bubbles',
+        productColor: '#d97706',
         temperatureSpike: 15,
     },
     {
@@ -4812,7 +5023,8 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ['ACETIC_ACID', 'FeOH3_PRECIPITATE'],
-        product: 'SODIUM_ACETATE',
+        product: 'IRON_ACETATE',
+        products: ['IRON_ACETATE'],
         equation: {
             EN: '3CH₃COOH (aq) + Fe(OH)₃ (s) → (CH₃COO)₃Fe (aq) + 3H₂O (l)',
             VN: '3CH₃COOH (dd) + Fe(OH)₃ (r) → (CH₃COO)₃Fe (dd) + 3H₂O (l)'
@@ -4826,10 +5038,11 @@ export const REACTION_RULES: ReactionRule[] = [
             VN: 'Kết tủa nâu đỏ Fe(OH)₃ tan trong axit axetic tạo dung dịch muối sắt(III) axetat.'
         },
         message: {
-            EN: 'Fe(OH)₃ precipitate dissolves in Acetic Acid.',
-            VN: 'Kết tủa nâu đỏ Fe(OH)₃ tan trong dung dịch axit axetic.'
+            EN: 'Fe(OH)₃ precipitate dissolves in Acetic Acid into amber-brown Iron Acetate!',
+            VN: 'Kết tủa nâu đỏ Fe(OH)₃ tan trong dung dịch axit axetic tạo dung dịch muối sắt axetat màu nâu hổ phách!'
         },
         effect: 'color_shift',
+        productColor: '#d97706',
         temperatureSpike: 12,
     },
     {
@@ -5128,6 +5341,7 @@ export const REACTION_RULES: ReactionRule[] = [
     {
         reactants: ['FORMIC_ACID', 'CuOH2_PRECIPITATE'],
         product: 'Cu2O_PRECIPITATE',
+        minTemperature: 60,
         equation: {
             EN: 'HCOOH + 2Cu(OH)₂ + 2NaOH -(t°)-> Na₂CO₃ + Cu₂O (s) ↓ + 4H₂O',
             VN: 'HCOOH + 2Cu(OH)₂ + 2NaOH -(t°)-> Na₂CO₃ + Cu₂O (r) ↓ + 4H₂O'
@@ -5285,6 +5499,7 @@ export const REACTION_RULES: ReactionRule[] = [
     {
         reactants: ['ACETALDEHYDE', 'CuOH2_PRECIPITATE'],
         product: 'Cu2O_PRECIPITATE',
+        minTemperature: 60,
         equation: {
             EN: 'CH₃CHO + 2Cu(OH)₂ + NaOH -(t°)-> CH₃COONa + Cu₂O (s) ↓ (Brick Red) + 3H₂O',
             VN: 'CH₃CHO + 2Cu(OH)₂ + NaOH -(t°)-> CH₃COONa + Cu₂O (r) ↓ (Đỏ Gạch) + 3H₂O'
@@ -5396,6 +5611,7 @@ export const REACTION_RULES: ReactionRule[] = [
     {
         reactants: ['STARCH', 'HCl'],
         product: 'GLUCOSE',
+        minTemperature: 80,
         equation: {
             EN: '(C₆H₁₀O₅)ₙ + nH₂O -(H⁺, t°)-> nC₆H₁₂O₆ (Starch Acid Hydrolysis)',
             VN: '(C₆H₁₀O₅)ₙ + nH₂O -(H⁺, t°)-> nC₆H₁₂O₆ (Thủy Phân Tinh Bột)'
@@ -5439,7 +5655,8 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ['ACETYLENE_GAS', 'KMnO4'],
-        product: 'SALT_WATER',
+        product: 'MANGANESE_DIOXIDE',
+        products: ['MANGANESE_DIOXIDE', 'SALT_WATER'],
         equation: {
             EN: '3CH≡CH + 8KMnO₄ + 4H₂O → 3(COOK)₂ + 8MnO₂ (s) ↓ (Brown) + 2KOH',
             VN: '3CH≡CH + 8KMnO₄ + 4H₂O → 3(COOK)₂ + 8MnO₂ (r) ↓ (Nâu Đen) + 2KOH'
@@ -5456,7 +5673,8 @@ export const REACTION_RULES: ReactionRule[] = [
             EN: 'Permanganate decolorized: Acetylene oxidizes with brown MnO₂ precipitate.',
             VN: 'Mất màu thuốc tím: Khí axetilen làm mất màu dung dịch KMnO₄ sinh kết tủa nâu đen MnO₂.'
         },
-        effect: 'color_shift',
+        effect: 'precipitate',
+        precipitateColor: '#451a03',
         temperatureSpike: 35,
     },
     {
@@ -5796,8 +6014,9 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ["POTASSIUM_DICHROMATE", "ETHANOL"],
-        product: "ACETALDEHYDE",
-        products: ["ACETALDEHYDE","CrCl3"],
+        product: "CHROMIUM_CHLORIDE",
+        products: ["CHROMIUM_CHLORIDE", "ACETALDEHYDE"],
+        productColor: "#10b981",
         equation: {
             EN: "K₂Cr₂O₇ (aq, Orange) + 3CH₃CH₂OH + 4H₂SO₄ → Cr₂(SO₄)₃ (aq, Emerald Green) + 3CH₃CHO + K₂SO₄ + 7H₂O",
             VN: "K₂Cr₂O₇ (dd, Cam) + 3C₂H₅OH + 4H₂SO₄ → Cr₂(SO₄)₃ (dd, Xanh Lục) + 3CH₃CHO + K₂SO₄ + 7H₂O"
@@ -5914,8 +6133,9 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ["TOLUENE", "KMnO4"],
-        product: "MnO2_PRECIPITATE",
-        products: ["MnO2_PRECIPITATE","POTASSIUM_ACETATE"],
+        product: "MANGANESE_DIOXIDE",
+        products: ["MANGANESE_DIOXIDE", "POTASSIUM_ACETATE"],
+        minTemperature: 60,
         equation: {
             EN: "C₆H₅CH₃ + 2KMnO₄ ──[Heat]──→ C₆H₅COOK + 2MnO₂ (s) ↓ (Brown) + KOH + H₂O",
             VN: "C₆H₅CH₃ + 2KMnO₄ ──[Đun nóng]──→ C₆H₅COOK + 2MnO₂ (r) ↓ (Nâu Đen) + KOH + H₂O"
@@ -5939,6 +6159,7 @@ export const REACTION_RULES: ReactionRule[] = [
         reactants: ["ALUMINUM", "FERRIC_OXIDE"],
         product: "IRON",
         products: ["IRON","ALUMINUM_OXIDE"],
+        minTemperature: 150,
         equation: {
             EN: "2Al (s) + Fe₂O₃ (s, Rust) → Al₂O₃ (s) + 2Fe (l, Molten Iron) + 851.5 kJ/mol Heat (2500°C)",
             VN: "2Al (r) + Fe₂O₃ (r, Gỉ sắt) → Al₂O₃ (r) + 2Fe (l, Sắt Nóng Chảy) + 851.5 kJ/mol (2500°C)"
@@ -5964,6 +6185,7 @@ export const REACTION_RULES: ReactionRule[] = [
         reactants: ["MANGANESE_DIOXIDE", "HCl"],
         product: "CHLORINE_GAS",
         products: ["CHLORINE_GAS","DISTILLED_WATER"],
+        minTemperature: 60,
         equation: {
             EN: "MnO₂ (s) + 4HCl (conc.) ──[Heat]──→ MnCl₂ (aq) + Cl₂ (g) ↑ (Yellow-Green) + 2H₂O",
             VN: "MnO₂ (r) + 4HCl (đặc) ──[Đun nóng]──→ MnCl₂ (dd) + Cl₂ (k) ↑ (Vàng Lục) + 2H₂O"
@@ -6128,6 +6350,7 @@ export const REACTION_RULES: ReactionRule[] = [
         reactants: ["CUPRIC_OXIDE", "ETHANOL"],
         product: "COPPER",
         products: ["COPPER","ACETALDEHYDE","DISTILLED_WATER"],
+        minTemperature: 80,
         equation: {
             EN: "CuO (s, Black) + CH₃CH₂OH (l) ──[Heat]──→ Cu (s, Reddish Lustrous) + CH₃CHO + H₂O",
             VN: "CuO (r, Đen) + C₂H₅OH (l) ──[Đun nóng]──→ Cu (r, Đồng Đỏ Ánh Kim) + CH₃CHO + H₂O"
@@ -6150,8 +6373,8 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ["STRONTIUM", "DISTILLED_WATER"],
-        product: "DISTILLED_WATER",
-        products: ["HYDROGEN_GAS"],
+        product: "SrOH2",
+        products: ["SrOH2", "HYDROGEN_GAS"],
         equation: {
             EN: "Sr (s) + 2H₂O (l) → Sr(OH)₂ (aq) + H₂ (g) ↑ + Heat",
             VN: "Sr (r) + 2H₂O (l) → Sr(OH)₂ (dd) + H₂ (k) ↑ + Nhiệt"
@@ -6169,12 +6392,13 @@ export const REACTION_RULES: ReactionRule[] = [
             VN: "Oxi hóa kim loại kiềm thổ! Stronti phản ứng mãnh liệt với nước, giải phóng các cột bọt khí hydro sủi tăm!"
         },
         effect: 'bubbles',
+        productColor: '#f0fdf4',
         temperatureSpike: 45,
     },
     {
         reactants: ["BERYLLIUM", "NaOH"],
-        product: "HYDROGEN_GAS",
-        products: ["HYDROGEN_GAS"],
+        product: "SODIUM_BERYLLATE",
+        products: ["SODIUM_BERYLLATE", "HYDROGEN_GAS"],
         equation: {
             EN: "Be (s) + 2NaOH (aq) + 2H₂O → Na₂[Be(OH)₄] (aq, Sodium Beryllate) + H₂ (g) ↑",
             VN: "Be (r) + 2NaOH (dd) + 2H₂O → Na₂[Be(OH)₄] (dd, Natri Berylat) + H₂ (k) ↑"
@@ -6192,6 +6416,7 @@ export const REACTION_RULES: ReactionRule[] = [
             VN: "Hòa tan lưỡng tính: Bột kim loại beri tan trong dung dịch kiềm NaOH giải phóng khí hydro!"
         },
         effect: 'bubbles',
+        productColor: '#f8fafc',
         temperatureSpike: 35,
     },
     {
@@ -6219,8 +6444,8 @@ export const REACTION_RULES: ReactionRule[] = [
     },
     {
         reactants: ["CHROMIUM_HYDROXIDE", "NaOH"],
-        product: "DISTILLED_WATER",
-        products: ["DISTILLED_WATER"],
+        product: "SODIUM_CHROMITE",
+        products: ["SODIUM_CHROMITE"],
         equation: {
             EN: "Cr(OH)₃ (s) + NaOH (excess) → Na[Cr(OH)₄] (aq, Deep Emerald Chromite Solution)",
             VN: "Cr(OH)₃ (r) + NaOH (dư) → Na[Cr(OH)₄] (dd, Cromit Xanh Ngọc Lục Bảo)"
@@ -6238,12 +6463,14 @@ export const REACTION_RULES: ReactionRule[] = [
             VN: "Hòa tan lưỡng tính: Kết tủa xanh xám tan hoàn toàn trong kiềm dư tạo dung dịch cromit màu xanh ngọc lục bảo lộng lẫy!"
         },
         effect: 'color_shift',
+        productColor: '#10b981',
         temperatureSpike: 10,
     },
     {
         reactants: ["POTASSIUM_CHLORATE", "CARBON"],
-        product: "NaCl",
-        products: ["CARBON_DIOXIDE"],
+        product: "KCl",
+        products: ["KCl", "CARBON_DIOXIDE"],
+        minTemperature: 150,
         equation: {
             EN: "2KClO₃ (s) + 3C (s) ──[Heat/Ignition]──→ 2KCl (s) + 3CO₂ (g) ↑ + Flash Detonation",
             VN: "2KClO₃ (r) + 3C (r) ──[Kích nổ / Nhiệt]──→ 2KCl (r) + 3CO₂ (k) ↑ + Nổ Chói Lòa"
